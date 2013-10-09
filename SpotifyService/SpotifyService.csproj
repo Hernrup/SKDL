@@ -42,6 +42,16 @@
     <Compile Include="Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpotifyLocalAPI\SpotifyLocalAPI.csproj">
+      <Project>{8d4037d9-7322-4207-afdd-82ca47e5ad84}</Project>
+      <Name>SpotifyLocalAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SpotifyMetaDataAPI\SpotifyMetaDataAPI.csproj">
+      <Project>{31486b98-6f3e-4cdb-89ec-ab734c1a1fa7}</Project>
+      <Name>SpotifyMetaDataAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

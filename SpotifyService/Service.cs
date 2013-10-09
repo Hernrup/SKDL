@@ -11,34 +11,38 @@ namespace SpotifyService
     public class Service
     {
         private SpotifyLocalApi.API localAPI;
-
+        private SpotifyMetaDataAPI.API metaAPI;
+        
         public Service() {
             setupLocalApi();
-
-
+            setupMetaApi();
         }
 
-        public Responses.Status play(string uri,string startingPosition){
+        public SpotifyMetaDataAPI.Responses.TrackContainer.Track  getTrackInfo(string trackUri) {
+            return metaAPI.getTrackInfo(trackUri);
+        }
+
+        public SpotifyLocalApi.Responses.Status play(string uri,string startingPosition){
             localAPI.URI = uri+"%23"+startingPosition;
             return localAPI.Play;
         }
-        public Responses.Status play(string uri){
+        public SpotifyLocalApi.Responses.Status play(string uri) {
            return this.play(uri,"0:0");
         }
 
-        public Responses.Status pause(){
+        public SpotifyLocalApi.Responses.Status pause() {
             return localAPI.Pause;
         }
 
-        public Responses.Status resume(){
+        public SpotifyLocalApi.Responses.Status resume() {
             return localAPI.Resume;
         }
 
-        public Responses.Status getStatus(){
+        public SpotifyLocalApi.Responses.Status getStatus() {
             return localAPI.Status;
         }
 
-        public Responses.ClientVersion ClientVersion(){
+        public SpotifyLocalApi.Responses.ClientVersion ClientVersion() {
             return localAPI.ClientVersion;
         }
         
@@ -48,14 +52,17 @@ namespace SpotifyService
             if (cfid.error != null)
             {
                 Console.WriteLine(string.Format("Spotify returned a error {0} (0x{1})", cfid.error.message, cfid.error.type));
-                Thread.Sleep(-1);
             }
             Responses.Status Current_Status = localAPI.Status;
             if (cfid.error != null)
             {
                 Console.WriteLine(string.Format("Spotify returned a error {0} (0x{1})", cfid.error.message, cfid.error.type));
-                Thread.Sleep(-1);
             }
+        }
+
+        public void setupMetaApi() {
+            metaAPI = new SpotifyMetaDataAPI.API();
+           
         }
  
     }

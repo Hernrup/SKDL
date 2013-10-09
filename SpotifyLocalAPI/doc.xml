@@ -11,13 +11,6 @@
             <param name="OAuth">Use <seealso cref="!:SpotifyAPI.GetOAuth()"/> to get this, Or specify your own</param>
             <param name="Host">Most of the time 127.0.0.1, or for lulz use something like my-awesome-program.spotilocal.com</param>
         </member>
-        <member name="M:SpotifyLocalApi.API.getArt(System.String)">
-            <summary>
-            Get a link to the 640x640 cover art image of a spotify album
-            </summary>
-            <param name="uri">The Spotify album URI</param>
-            <returns></returns>
-        </member>
         <member name="M:SpotifyLocalApi.API.GetOAuth">
             <summary>
             Recieves a OAuth key from the Spotify site

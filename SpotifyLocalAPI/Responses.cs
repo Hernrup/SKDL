@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,10 +30,17 @@ namespace SpotifyLocalApi
             public bool playing { get; set; }
             public bool shuffle { get; set; }
             public bool repeat { get; set; }
-            public bool play_enabled { get; set; }
-            public bool prev_enabled { get; set; }
+
+            [JsonProperty("play_enabled")]
+            public bool playEnabled { get; set; }
+
+            [JsonProperty("prev_enabled")]
+            public bool prevEnabled { get; set; }
+
             public Internal.track track { get; set; }
-            public double playing_position { get; set; }
+
+            [JsonProperty("playing_position")]
+            public double playingPosition { get; set; }
             public int server_time { get; set; }
             public double volume { get; set; }
             public bool online { get; set; }
@@ -59,11 +67,20 @@ namespace SpotifyLocalApi
 
             public class track
             {
-                public resource track_resource { get; set; }
-                public resource artist_resource { get; set; }
-                public resource album_resource { get; set; }
+                [JsonProperty("track_resource")]
+                public resource trackResource { get; set; }
+
+                [JsonProperty("artist_resource")]
+                public resource artistResource { get; set; }
+
+                [JsonProperty("album_resource")]
+                public resource albumResource { get; set; }
+
+                [JsonProperty("length")]
                 public int length { get; set; }
-                public string track_type { get; set; }
+
+                [JsonProperty("track_type")]
+                public string trackType { get; set; }
             }
 
             public class resource

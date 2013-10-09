@@ -27,35 +27,7 @@ namespace SpotifyLocalApi
             wc.Headers.Add("Origin", "https://embed.spotify.com");
             wc.Headers.Add("Referer", "https://embed.spotify.com/?uri=spotify:track:5Zp4SWOpbuOdnsxLqwgutt");
         }
-
-        /// <summary>
-        /// Get a link to the 640x640 cover art image of a spotify album
-        /// </summary>
-        /// <param name="uri">The Spotify album URI</param>
-        /// <returns></returns>
-        public string getArt(string uri)
-        {
-            try
-            {
-                string raw = new WebClient().DownloadString("http://open.spotify.com/album/" + uri.Split(new string[] { ":" }, StringSplitOptions.None)[2]);
-                raw = raw.Replace("\t", ""); ;
-                string[] lines = raw.Split(new string[] { "\n" }, StringSplitOptions.None);
-                foreach (string line in lines)
-                {
-                    if (line.StartsWith("<meta property=\"og:image\""))
-                    {
-                        string[] l = line.Split(new string[] { "/" }, StringSplitOptions.None);
-                        return "http://o.scdn.co/640/" + l[4].Replace("\"", "").Replace(">", "");
-                    }
-                }
-            }
-            catch
-            {
-                return "";
-            }
-            return "";
-        }
-
+        
 
         /// <summary>
         /// Gets the current Unix Timestamp

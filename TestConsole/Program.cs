@@ -1,72 +1,42 @@
-﻿using System;
+﻿using SpotifyService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using SpotifyLocalApi;
+
 
 namespace TestConsole
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("SpotifyLocalAPI demonstration");
-            Console.WriteLine("By JariZ.nl 2012");
-            Console.WriteLine("Warning: This demo requires you to have Spotify open and running!");
+        static void Main(string[] args) {
             Console.WriteLine();
             Console.WriteLine("Authenticating...");
 
-            try
-            {
-                SpotifyLocalApi.API API = new SpotifyLocalApi.API(SpotifyLocalApi.API.GetOAuth(), "jariz-example.spotilocal.com");
-                Responses.CFID cfid = API.CFID; //It's required to get the contents of API.CFID before doing anything, even if you're not intending to do anything with the CFID
-                if (cfid.error != null)
-                {
-                    Console.WriteLine(string.Format("Spotify returned a error {0} (0x{1})", cfid.error.message, cfid.error.type));
-                    Thread.Sleep(-1);
-                }
-                Responses.Status Current_Status = API.Status;
-                if (cfid.error != null)
-                {
-                    Console.WriteLine(string.Format("Spotify returned a error {0} (0x{1})", cfid.error.message, cfid.error.type));
-                    Thread.Sleep(-1);
-                }
+            try {
 
-                //if (Current_Status.track != null)
-                //    Console.WriteLine(string.Format("You're listening to {0} - {1} from the album '{2}'", Current_Status.track.track_resource.name, Current_Status.track.artist_resource.name, Current_Status.track.album_resource.name));
-                //else
-                //    Console.WriteLine("You're not listening to any songs");
+                SpotifyService.Service sp = new SpotifyService.Service();
+                string trackUri = "spotify:track:2r1WyawAEquFyJc81xCv50";
 
-                //Thread.Sleep(1000);
-                ////Pause playback
-                //Current_Status = API.Pause;
+                var status = sp.getStatus();
+                if (status.track != null)
+                    Console.WriteLine(string.Format("You're listening to {0} - {1} from the album '{2}'", status.track.trackResource.name, status.track.artistResource.name, status.track.albumResource.name));
+                else
+                    Console.WriteLine("You're not listening to any songs");
 
-                //Thread.Sleep(1000);
-                ////Resume playback
-                //Current_Status = API.Resume;
+                Console.WriteLine(sp.getTrackInfo(trackUri).artists[0].name);
 
-                //Thread.Sleep(1000);
-                //API.URI = "spotify:track:2r1WyawAEquFyJc81xCv50";
-                //API.URI = "spotify:track:2r1WyawAEquFyJc81xCv50";
-                API.URI = "spotify:track:3iDK8BAaBUatPR84gdfa9g%230:25";
-                Current_Status = API.Play;
+                sp.play(trackUri);
 
-                //Thread.Sleep(1000);
-                ////Get current album art and open it in browser
-                //string art = API.getArt(Current_Status.track.album_resource.uri); //get current art url
-                //Process.Start(art); //open url in browser
-
-                Console.WriteLine();
-                Console.WriteLine("Tests complete.");
             }
-            catch (Exception z)
-            {
+            catch (Exception z) {
                 Console.WriteLine("Unexpected error:\r\n" + z.ToString());
             }
             Console.ReadLine();
-            //Thread.Sleep(-1);
+
+           
         }
     }
 }

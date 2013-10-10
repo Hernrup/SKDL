@@ -48,15 +48,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SpotifyLocalAPI\SpotifyLocalAPI.csproj">
+    <ProjectReference Include="..\..\SpotifyControlCenter\SpotifyLocalAPI\SpotifyLocalAPI.csproj">
       <Project>{8d4037d9-7322-4207-afdd-82ca47e5ad84}</Project>
       <Name>SpotifyLocalAPI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SpotifyMetaDataAPI\SpotifyMetaDataAPI.csproj">
+    <ProjectReference Include="..\..\SpotifyControlCenter\SpotifyMetaDataAPI\SpotifyMetaDataAPI.csproj">
       <Project>{31486b98-6f3e-4cdb-89ec-ab734c1a1fa7}</Project>
       <Name>SpotifyMetaDataAPI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SpotifyService\SpotifyService.csproj">
+    <ProjectReference Include="..\..\SpotifyControlCenter\SpotifyService\SpotifyService.csproj">
       <Project>{783e20a8-204d-496a-9108-242df06067ba}</Project>
       <Name>SpotifyService</Name>
     </ProjectReference>

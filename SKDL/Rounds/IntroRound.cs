@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SKDL
 {
-    class IntroRound
+    public class IntroRound : Round
     {
+        public IntroRound() { 
+            this.type = "intro";
+        }
+
     }
 }

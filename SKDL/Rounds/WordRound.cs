@@ -8,6 +8,11 @@ namespace SKDL
 {
     public class WordRound : Round
     {
-        public string[] words { get; set; }
+        public List<string> words { get; set; }
+
+        public WordRound() { 
+            this.type = "words";
+            this.words = new List<string>();
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using SpotifyService;
+﻿using Newtonsoft.Json;
+using SKDL;
+using SpotifyService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,19 +19,18 @@ namespace TestConsole
 
             try {
 
-                SpotifyService.Service sp = new SpotifyService.Service();
-                string trackUri = "spotify:track:2r1WyawAEquFyJc81xCv50";
+                var game = new Game();
+                game.rounds.Add(new IntroRound());
+                game.rounds.Add(new WordRound());
+                game.rounds.Add(new ImageRound());
+                game.rounds.Add(new LyricsRound());
 
-                var status = sp.getStatus();
-                if (status.track != null)
-                    Console.WriteLine(string.Format("You're listening to {0} - {1} from the album '{2}'", status.track.trackResource.name, status.track.artistResource.name, status.track.albumResource.name));
-                else
-                    Console.WriteLine("You're not listening to any songs");
+                string output = JsonConvert.SerializeObject(game);
+                Console.WriteLine(output);
 
-                Console.WriteLine(sp.getTrackInfo(trackUri).artists[0].name);
 
-                sp.play(trackUri);
-
+                var gameOut = JsonConvert.DeserializeObject<Game>(output, new RoundConverter());
+                gameOut.ToString();
             }
             catch (Exception z) {
                 Console.WriteLine("Unexpected error:\r\n" + z.ToString());

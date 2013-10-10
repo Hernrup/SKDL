@@ -9,7 +9,7 @@ namespace SKDL
 
     public partial class Round
     {
-        
+        public string type { get; set; }
         
     }
 }

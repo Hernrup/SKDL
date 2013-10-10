@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,6 +54,7 @@
       <DependentUpon>GUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
+    <Compile Include="JsonCreationConverter.cs" />
     <Compile Include="Rounds\ImageRound.cs" />
     <Compile Include="Rounds\IntroRound.cs" />
     <Compile Include="Rounds\LyricsRound.cs" />
@@ -88,6 +92,7 @@
     <EmbeddedResource Include="Views\ViewB.resx">
       <DependentUpon>ViewB.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -18,6 +18,13 @@ namespace SKDL
         {
             InitializeComponent();
             FormView = FormViews.A; //simply change views like this
+            fullscreen(null,null);
+        }
+
+        private void fullscreen(object sender, EventArgs e) {
+            this.TopMost = true;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
         }
 
         public enum FormViews {
@@ -49,6 +56,10 @@ namespace SKDL
                     this.panelContent.DockControl(viewB);
                     break;
             }
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e) {
+
         }
     }
 

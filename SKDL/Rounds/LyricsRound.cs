@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace SKDL
 {
-    class LyricsRound
+    public class LyricsRound : Round
     {
+        public LyricsRound() { 
+            this.type = "lyrics";
+        }
     }
 }

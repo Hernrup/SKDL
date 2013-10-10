@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyMetaDataAPI", "..\Sp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyService", "..\SpotifyControlCenter\SpotifyService\SpotifyService.csproj", "{783E20A8-204D-496A-9108-242DF06067BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKDLViewControls", "WindowsFormsControlLibrary1\SKDLViewControls.csproj", "{16AAFAA8-5987-4D78-AF61-5B4A00A23A88}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,10 +37,6 @@ Global
 		{783E20A8-204D-496A-9108-242DF06067BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{783E20A8-204D-496A-9108-242DF06067BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{783E20A8-204D-496A-9108-242DF06067BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{16AAFAA8-5987-4D78-AF61-5B4A00A23A88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16AAFAA8-5987-4D78-AF61-5B4A00A23A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16AAFAA8-5987-4D78-AF61-5B4A00A23A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16AAFAA8-5987-4D78-AF61-5B4A00A23A88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

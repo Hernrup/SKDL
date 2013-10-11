@@ -8,8 +8,18 @@ namespace SKDL
 {
     public class LyricsRound : Round
     {
+        public Lyric lyrics { get; set; }
+
         public LyricsRound() { 
             this.type = "lyrics";
         }
+
+        
+    }
+
+    public class Lyric
+    {
+        public string original { get; set; }
+        public string translated { get; set; }
     }
 }

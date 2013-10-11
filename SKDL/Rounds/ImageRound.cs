@@ -8,11 +8,11 @@ namespace SKDL
 {
     public class ImageRound : Round
     {
-        public List<string>images { get; set; }
+
+        public List<string> images { get; set; }
 
         public ImageRound() { 
             this.type = "image";
-            this.images = new List<string>();
         }
     }
 }

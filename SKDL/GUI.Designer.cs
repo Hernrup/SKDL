@@ -49,13 +49,13 @@
             this.panelContent.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panelContent.Location = new System.Drawing.Point(12, 12);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(1090, 425);
+            this.panelContent.Size = new System.Drawing.Size(844, 249);
             this.panelContent.TabIndex = 0;
             // 
             // richTextBox1
             // 
             this.richTextBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.richTextBox1.Location = new System.Drawing.Point(872, 15);
+            this.richTextBox1.Location = new System.Drawing.Point(629, 15);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(106, 165);
             this.richTextBox1.TabIndex = 1;
@@ -66,7 +66,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox1.Location = new System.Drawing.Point(980, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(737, 15);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(107, 165);
             this.pictureBox1.TabIndex = 3;
@@ -78,9 +78,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox3.Location = new System.Drawing.Point(239, 15);
+            this.pictureBox3.Location = new System.Drawing.Point(216, 15);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(616, 165);
+            this.pictureBox3.Size = new System.Drawing.Size(407, 165);
             this.pictureBox3.TabIndex = 5;
             this.pictureBox3.TabStop = false;
             // 
@@ -93,9 +93,9 @@
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.richTextBox1);
-            this.panel1.Location = new System.Drawing.Point(12, 457);
+            this.panel1.Location = new System.Drawing.Point(12, 267);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1090, 191);
+            this.panel1.Size = new System.Drawing.Size(845, 191);
             this.panel1.TabIndex = 6;
             // 
             // pictureBox2
@@ -121,11 +121,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1114, 660);
+            this.ClientSize = new System.Drawing.Size(869, 470);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelContent);
             this.Name = "GUI";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.GUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel1.ResumeLayout(false);

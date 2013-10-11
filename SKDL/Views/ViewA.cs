@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SKDLViewControls
 {
-    public partial class ViewA: UserControl
+    public partial class ViewA : UserControl
     {
         public ViewA()
         {

@@ -19,18 +19,9 @@ namespace TestConsole
 
             try {
 
-                var game = new Game();
-                game.rounds.Add(new IntroRound());
-                game.rounds.Add(new WordRound());
-                game.rounds.Add(new ImageRound());
-                game.rounds.Add(new LyricsRound());
+                var game = DataHandler.loadGame("");
 
-                string output = JsonConvert.SerializeObject(game);
-                Console.WriteLine(output);
-
-
-                var gameOut = JsonConvert.DeserializeObject<Game>(output, new RoundConverter());
-                gameOut.ToString();
+                game = game;
             }
             catch (Exception z) {
                 Console.WriteLine("Unexpected error:\r\n" + z.ToString());

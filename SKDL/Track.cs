@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace SKDL
 {
-
-    public class Game
+    public class Track
     {
-        public List<Round> rounds { get; set; }
-
-        public Game() {
-            
-        }
+        public string uri { get; set; }
+        public string position { get; set; }
     }
 }

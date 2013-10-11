@@ -61,6 +61,11 @@ namespace SKDL
         private void richTextBox1_TextChanged(object sender, EventArgs e) {
 
         }
+
+        private void GUI_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public static class PanelExtensions {

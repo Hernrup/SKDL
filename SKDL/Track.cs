@@ -10,5 +10,6 @@ namespace SKDL
     {
         public string uri { get; set; }
         public string position { get; set; }
+        public SpotifyMetaDataAPI.Track trackMetaData { get; set; }
     }
 }

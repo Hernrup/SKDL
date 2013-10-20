@@ -15,20 +15,17 @@ namespace TestConsole
     {
         static void Main(string[] args) {
             Console.WriteLine();
-            Console.WriteLine("Authenticating...");
+            
 
             try {
-
-                var game = DataHandler.loadGame("");
-
-                game = game;
+                var game = Game.load("game1");
+                Console.WriteLine(game.buildReference());
+                
             }
             catch (Exception z) {
                 Console.WriteLine("Unexpected error:\r\n" + z.ToString());
             }
             Console.ReadLine();
-
-           
         }
     }
 }

@@ -8,14 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SKDLViewControls
+namespace SKDL.Views
 {
-    public partial class ViewA : UserControl
+    public partial class GenericView : UserControl
     {
-        public ViewA()
+        public GenericView()
         {
             InitializeComponent();
         }
 
+        public virtual Boolean handleKeyPress(Keys k)
+        {
+            return true;
+        }
     }
 }

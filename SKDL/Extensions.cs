@@ -11,10 +11,7 @@ namespace SKDL
 {
     public static class Extensions
     {
-        public static string serialize<T>(this T toSerialize)
-        {
-            return DataHandler.serialize(toSerialize);
-        }
+       
     }
 
 

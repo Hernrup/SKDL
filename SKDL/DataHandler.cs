@@ -1,42 +1,113 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using SKDLViewControls;
+using SKDL.Views;
 
 namespace SKDL
 {
     public class DataHandler
     {
+        //public static string gamesFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"SKDL","games");
+        public static string gamesFolder = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "games");
 
-        public static Game loadGame(string path) {
-            var game = getDummyData();
-            createViews(game);
+        public static string gameFileExtension = ".sing";
+        public static string gameFile = "settings" + gameFileExtension;
+
+
+        public static Game gameFromFile(string gameName) {
+            var path = Path.Combine(gamesFolder, gameName, DataHandler.gameFile);
+            var data = readStringFromFile(path);
+            Game game = deserialize<Game>(data);
+            
+            game.path = Path.Combine(gamesFolder, gameName);
+            game = getTrackMetaData(game);
+            game.rounds.Add(new Round() { type = "credits" });
+            game = createGameReference(game);
+            game = createViews(game);
+            
             return game;
         }
 
-        public static Game createViews(Game game) {
+
+        public static Game getTrackMetaData(Game game) {
             foreach (var r in game.rounds) {
-                r.view = getNewView(r.type);
+                if (r.track != null) {
+                    r.track.trackMetaData = SpotifyService.Service.Instance.getTrackInfo(r.track.uri);
+                }
             }
 
             return game;
         }
 
-        private static UserControl getNewView(string type){
-            switch (type)
+        public static Game createViews(Game game) {
+            foreach (var r in game.rounds) {
+                r.view = getView(r);
+            }
+
+            return game;
+        }
+
+        public static Game createGameReference(Game game) {
+            foreach (var r in game.rounds) {
+                r.game = game;
+            }
+
+            return game;
+        }
+
+        public static void writeStringToFile(string s, string gameName) {
+            var path = Path.Combine(gamesFolder, gameName);
+            Directory.CreateDirectory(path);
+            using (StreamWriter outfile = new StreamWriter(Path.Combine(path, DataHandler.gameFile), true))
+            {
+                outfile.Write(s);
+            }
+        }
+
+        public static void saveStringToChoosenFile(string s) {
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.FileName = "Game.txt";
+            savefile.Filter = "Text files (*.txt)|*.txt";
+            if(savefile.ShowDialog() == DialogResult.OK)
+            {
+                using(StreamWriter sw = new StreamWriter(savefile.FileName))
+                    sw.WriteLine(s);
+            }
+        }
+
+        public static string readStringFromFile(string file)
+        {
+            return File.ReadAllText(Path.Combine(gamesFolder, file));
+        }
+
+        public static List<string> getAvaliableGames() {
+            var games = new List<string>();
+            foreach (string folder in Directory.GetDirectories(DataHandler.gamesFolder, "*", SearchOption.TopDirectoryOnly)) {
+                games.Add(Path.GetFileName(folder));
+            }
+            return games;
+        }
+
+        private static GenericView getView(Round round)
+        {
+            switch (round.type)
             {
                 case "intro":
-                    return new ViewA();
+                    return new IntroView(round);
                 case "image":
-                    return new ViewA();
+                    return new ImageView(round);
                 case "lyrics":
-                    return new ViewA();
+                    return new LyricsView(round);
                 case "words":
-                    return new ViewA();
+                    return new WordView(round);
+                case "credits":
+                    return new CreditsView(round);
                 default:
                     throw new Exception("Round type could not be found");
             }
@@ -52,55 +123,8 @@ namespace SKDL
         }
 
 
-        public static Game getDummyData()
-        {
-            var game = new Game();
-            game.rounds = new List<Round>() { 
-                new IntroRound() { 
-                     track = new Track(){uri="spotify:track:77o2IKTG6w7E8uKdCGij4b",position="0:0"}
-                },
-                new WordRound()
-                {
-                    track = new Track(){uri="spotify:track:77o2IKTG6w7E8uKdCGij4b",position="0:0"},
-                    words = new List<Word>() { 
-                            new Word(){text = "word1", bom = false},
-                            new Word(){text = "word2", bom = false},
-                            new Word(){text = "word3", bom = false},
-                            new Word(){text = "word4", bom = false},
-                            new Word(){text = "word5", bom = false},
-                            new Word(){text = "word6", bom = false},
-                        }
-                },
-                new WordRound()
-                {
-                    track = new Track(){uri="spotify:track:77o2IKTG6w7E8uKdCGij4b",position="0:0"},
-                     words = new List<Word>() { 
-                            new Word(){text = "word1", bom = false},
-                            new Word(){text = "word2", bom = false},
-                            new Word(){text = "word3", bom = false},
-                            new Word(){text = "word4", bom = false},
-                            new Word(){text = "word5", bom = false},
-                        }
-                },
-                new ImageRound(){
-                    track = new Track(){uri="spotify:track:77o2IKTG6w7E8uKdCGij4b",position="0:0"},
-                    images = new List<string>() { 
-                        "pic1.png",
-                        "pic2.png",
-                        "pic3.png",
-                        "pic4.png",
-                        "pic5.png",
-                        "pic6.png"
-                    }
-                },
-                new LyricsRound(){
-                    track = new Track(){uri="spotify:track:77o2IKTG6w7E8uKdCGij4b",position="0:0"},
-                    lyrics = new Lyric(){original="Some text original",translated="some text translated"}
-                }
-                
-            };
+       
 
-            return game;
-        }
+      
     }
 }
